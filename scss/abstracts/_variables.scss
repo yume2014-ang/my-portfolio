@@ -1,0 +1,23 @@
+// Color
+$color-main: #4d2d18;   // アイコンのブラウン
+$color-accent: #d4a373; // 落ち着いたゴールド系
+$color-base: #fdfaf7;   // 柔らかな背景色
+$color-text: #2c1810;   // 深いブラウン
+$color-white: #fff;
+
+// Fonts
+$font-en: 'Montserrat', sans-serif;
+$font-ja: 'Noto Sans JP', sans-serif;
+
+$space-unit: 20px;      // 余白の基準値
+$space-scroll: 30px;    // スクロール位置のオフセット
+
+$header-height: 70px;       // ヘッダーの高さ
+$header-border-width: 2px;  // ボーダーの太さ
+
+// z-indexの管理
+$z-index-default: 1;
+$z-index-slider-arrow: 10;   // スライダーの矢印
+$z-index-header: 1000;       // ヘッダー本体
+$z-index-nav-mobile: 1050;   // スマホ用ナビ
+$z-index-hamburger: 1100;    // ハンバーガーボタン

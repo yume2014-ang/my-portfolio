@@ -1,0 +1,143 @@
+@use '../abstracts/variables' as *;
+
+.header {
+  background-color: $color-white;
+
+  // ヘッダーを固定
+  position: fixed;      // 画面に対して位置を固定
+  top: 0;               // 一番上に配置
+  left: 0;
+  width: 100%;          // 横幅いっぱい
+  height: $header-height;
+  border-bottom: $header-border-width solid $color-main;  // 下線
+  box-sizing: border-box;
+  z-index: $z-index-header; // 他の要素より手前で描画
+
+  // ロゴとナビを横並び
+  .container {
+    height: 100%;                 // ボーダーの太さを含めて 70px
+    display: flex;                // 子要素を横並び（Flexbox）
+    justify-content: space-between; // 両端に振り分ける（左にロゴ、右にナビ）
+    align-items: center;          // 垂直方向の中央に揃える
+  }
+
+  // ロゴ ->
+  &__logo {
+    margin: 0;
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $color-main;
+    }
+  }
+  // ロゴ文字の調整
+  &__logo-text {
+    font-family: $font-en;
+    font-size: 1.2rem;
+  }
+
+  &__logo-img {
+    width: 35px;
+    height: auto;   // アスペクト比を維持
+    vertical-align: middle; // 隣のテキストとの高さ
+    margin-right: 5px;      // ロゴとテキストの間の隙間
+  }
+  // <- ロゴ
+
+  // ハンバーガーボタンの基本スタイル（PCでは非表示）
+  &__hamburger {
+    display: none; // PCでは隠す
+    
+    @media (max-width: 768px) {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: $z-index-hamburger; // ナビより上に
+
+      span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: $color-main;
+        transition: all 0.3s;
+
+        &:nth-child(1) { top: 0; }
+        &:nth-child(2) { top: 11px; }
+        &:nth-child(3) { bottom: 0; }
+      }
+
+      // ボタンがアクティブな時の「X」アニメーション
+      &.is-active {
+        span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        span:nth-child(2) { opacity: 0; }
+        span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+      }
+    }
+  }
+
+  // ナビゲーションの制御
+  &__nav {
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: -100%; // 最初は画面の外に隠す
+      width: 100%;
+      height: 100vh;
+      background-color: rgba($color-white, 0.95);
+      transition: all 0.4s;
+      z-index: $z-index-nav-mobile;
+
+      // メニューが開いた時
+      &.is-active {
+        right: 0;
+      }
+    }
+  }
+
+  // ナビ ->
+  &__list {
+    display: flex;      // リスト項目を横並び
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-left: 25px; // メニュー間の余白
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column; // 縦並びに
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      li {
+        margin: 20px 0; // PCの margin-left をリセットして上下余白に
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-text;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $color-accent;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem; // スマホでは文字を大きくして押しやすく
+    }
+  }
+  // <- ナビ
+}
