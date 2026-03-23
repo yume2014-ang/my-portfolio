@@ -1,0 +1,309 @@
+@use 'abstracts/mixin' as *;
+@use 'abstracts/variables' as *;
+@use 'layout/header';
+@use 'layout/footer';
+
+//  基本スタイル
+body {
+  margin: 0;
+  padding-top: $header-height;  // ヘッダーの高さ
+  font-family: $font-ja;  // 全体は日本語フォント
+  background-color: $color-base;
+  color: $color-text;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: $font-en;  // 英語フォント
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 $space-unit;
+}
+
+//  セクション
+.section {
+  padding: 60px 0;
+
+  // スクロール位置のオフセット
+  scroll-margin-top: $space-scroll;
+
+  &__title { // .section__title
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    position: relative;
+
+    // タイトル下の装飾
+    &::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: $color-main;
+      margin: 10px auto 0;
+    }
+  }
+
+  // フェードイン・エフェクト（スクロール時）
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+  &.is-show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Main Visual
+.main-visual {
+  width: 100%;
+  overflow: hidden; // 横にはみ出たスライドを隠す
+  margin-top: 30px; // ヘッダーとの間に30px
+  padding: 50px 0;  // 上下に余白
+}
+
+// slider
+.main-slider {
+  &__item {
+    padding: 0;
+    margin: 0 auto;
+    height: 60vh;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px; // 角を丸くする
+    }
+  }
+
+  // 左右のチラ見えスライドを少し暗く・小さくする
+  .slick-slide {
+    opacity: 0.3;
+    transition: opacity 0.4s, transform 0.4s;
+    transform: scale(0.9); // 少し小さく
+  }
+
+  // センターのスライドだけ明るくする
+  .slick-center {
+    opacity: 1;
+    transform: scale(1);   // 中央は100%の大きさ
+  }
+
+  // 矢印のカスタマイズ
+  .slick-prev, .slick-next {
+    z-index: $z-index-slider-arrow; // スライドより上に表示
+    width: 40px;      // クリックエリアを確保
+    height: 40px;
+
+    &::before {
+      color: $color-main; // 矢印の色
+      font-size: 20px;    // 矢の大きさ
+      opacity: 1;         // 透過解除
+    }
+  }
+
+  .slick-prev {
+    left: 15%;
+    @media (max-width: 768px) {
+      left: 2%;
+    }
+  }
+
+  .slick-next {
+    right: 15%;
+    @media (max-width: 768px) {
+      right: 2%;
+    }
+  }
+}
+
+//  Gallery
+.gallery {
+
+  // タブメニュー
+  &__tabs {
+    @include flex-center;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  &__tab {
+    cursor: pointer;
+    padding: 10px 25px;
+    border: 1px solid $color-main;
+    color: $color-main; // 文字色
+    margin: 0 5px;
+    transition: all 0.3s;
+
+    &.is-active {
+      background: $color-main;
+      color: $color-white;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }  
+
+  // レイアウト
+  &__list {
+    display: flex;       // フレックスボックス
+    flex-wrap: wrap;     // 折り返しを許可
+    gap: 20px;           // アイテム間の余白
+    padding: 0;
+  }
+
+  &__item {
+    background: $color-white;
+    border-radius: 8px;   // 角を丸く
+    overflow: hidden;    // 子要素がはみ出さないように
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // 軽い影で立体感を出す
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // 変化を滑らかに
+    
+    // カラム計算：PCでは3段（100% / 3 - 余白分）
+    width: calc(33.333% - (20px * 2 / 3));
+
+    // スマホ対応（メディアクエリ：画面幅が768px以下の時）
+    @media (max-width: 768px) {
+      width: calc(50% - (20px / 2)); // スマホでは2段
+    }
+    @media (max-width: 480px) {
+      width: 100%; // もっと小さい画面では1段
+    }
+
+    // aタグ自体の装飾をリセット
+    a {
+      text-decoration: none; // 下線を消す
+      color: inherit;        // 親要素の色（$color-text）を継承
+      display: block;        // アイテム全体をクリック可能にする場合に有効
+    }
+
+    // ホバーエフェクト（マウスを乗せた時の挙動）
+    &:hover {
+      transform: translateY(-5px); // 少し浮き上がらせる
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 16 / 9; // アスペクト比を固定（画像がなくても形を保つ）
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9rem;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__name {
+    padding: 15px;
+    margin: 0;
+    font-size: 1.1rem;
+    text-align: center;
+    color: $color-text;
+  }
+}
+
+//  Contact
+.contact {
+  background-color: $color-white;
+
+  &__message {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__form {
+    max-width: 600px;
+    margin: 0 auto; // 中央寄せ
+  }
+
+  &__item {
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: $color-main;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; // パディングを幅に含める
+    font-family: inherit;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $color-accent; // 入力中（フォーカス時）の色
+      box-shadow: 0 0 5px rgba($color-accent, 0.3);
+    }
+  }
+
+  &__textarea {
+    height: 150px;
+    resize: vertical; // 上下方向のみサイズ変更可能
+  }
+
+  &__btn-area {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  &__btn {
+    background-color: $color-main;
+    color: $color-white;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 30px; // 丸いボタン
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+      background-color: $color-accent;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__thanks {
+    display: none;  // 最初は隠す（JSでfadeInさせるため）
+    text-align: center;
+    padding: 40px 0;
+
+    h3 {
+      color: $color-main;
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    // ボタンの追加調整
+    .contact__btn {
+      display: inline-block;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
+
+# --- VSCode settings ---
+.vscode/
+
+# --- Sass / CSS ---
+# ソースマップ（デバッグ用）は公開リポジトリには不要なため除外
+css/*.map
+
+# --- Node / npm (もし使っていれば) ---
+node_modules/
+npm-debug.log*
+
+# --- Others ---
+*.log

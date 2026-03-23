@@ -1,0 +1,35 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixin' as *;
+
+.footer {
+  background-color: $color-main; // アイコンの色で全体を引き締める
+  color: $color-white;
+  padding: 40px 0;
+  text-align: center;
+
+  // ロゴ全体を横並びにして中央に配置
+  &__logo {
+    @include flex-center;
+    margin-bottom: 10px;
+  }
+
+  // アイコン画像の調整
+  &__logo-img {
+    width: 24px;              // フッターに合わせた少し小さめのサイズ
+    height: 24px;
+    margin-right: 8px;        // 文字との隙間
+    object-fit: cover;        // 画像の歪み防止
+  }
+
+  // ロゴ文字の調整
+  &__logo-text {
+    font-family: $font-en;
+    font-size: 1.5rem;
+    color: $color-white;
+  }
+
+  &__copyright {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}

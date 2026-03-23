@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/icon_y_2.png">
+    <title>Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <!-- logo -->
+            <h1 class="header__logo">
+                <a href="index.html">
+                    <img src="images/icon_y_2.png" alt="Logo" class="header__logo-img">
+                    <span class="header__logo-text">Portfolio</span>
+                </a>
+            </h1>
+
+            <button class="header__hamburger" id="js-hamburger" aria-label="メニュー開閉">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- nav -->
+            <nav class="header__nav" id="js-nav">
+                <ul class="header__list">
+                    <li><a href="index.html" class="header__link">Home</a></li>
+                    <li><a href="#gallery" class="header__link">Gallery</a></li>
+                    <li><a href="#profile" class="header__link">Profile</a></li>
+                    <li><a href="contact.html" class="header__link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Main Visual(slider) -->
+        <section id="mv" class="main-visual">
+            <div class="main-slider">
+                <div class="main-slider__item"><img src="images/forSlide/slide_apple.jpg" alt="apple"></div>
+                <div class="main-slider__item"><img src="images/forSlide/slide_hakone_2.jpg" alt="hakone2"></div>
+                <div class="main-slider__item"><img src="images/forSlide/slide_hakone_3.jpg" alt="hakone3"></div>
+                <div class="main-slider__item"><img src="images/forSlide/slide_yarn_shop.jpg" alt="yarn shop"></div>
+                <div class="main-slider__item"><img src="images/forSlide/slide_gunma.jpg" alt="gunma"></div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="gallery section">
+            <div class="container">
+                <h2 class="section__title">Gallery</h2>
+                
+                <ul class="gallery__tabs">
+                    <li class="gallery__tab is-active" data-tab="all">All</li>
+                    <li class="gallery__tab" data-tab="app">App</li>
+                    <li class="gallery__tab" data-tab="code">Code</li>
+                </ul>
+
+                <div class="gallery__list">
+                    <article class="gallery__item" data-category="code">
+                        <a href="https://github.com/yume2014-ang/my-portfolio">
+                            <div class="gallery__image">
+                                <img src="images/gallery_apple.jpg" alt="LP">
+                            </div>
+                            <h3 class="gallery__name">LP Code</h3>
+                        </a>
+                    </article>
+                    <article class="gallery__item" data-category="app">
+                        <a href="https://yarn-classifier.streamlit.app/">
+                            <div class="gallery__image">
+                                <img src="images/gallery_yarn_class.jpg" alt="Yarn Lens">
+                            </div>
+                            <h3 class="gallery__name">Yarn Lens</h3>
+                        </a>
+                    </article>
+                    <article class="gallery__item" data-category="code">
+                        <a href="https://github.com/yume2014-ang/yarn-classifier-app">
+                            <div class="gallery__image">
+                                <img src="images/gallery_yarn_class.jpg" alt="Yarn Lens Code">
+                            </div>
+                            <h3 class="gallery__name">Yarn Lens Code</h3>
+                        </a>
+                    </article>
+                    <article class="gallery__item" data-category="app">
+                        <a href="https://yume2014-ang.github.io/game-shuffle-panic/">
+                            <div class="gallery__image">
+                                <img src="images/gallery_shuffle_panic.jpg" alt="Shuffle Panic">
+                            </div>
+                            <h3 class="gallery__name">Shuffle Panic</h3>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile -->
+        <section id="profile" class="profile section">
+            <div class="container">
+                <h2 class="section__title">Profile</h2>
+                <div class="profile__content">
+                    <p class="profile__text">
+                        C言語やVC++開発で培った論理的思考に基づき、読みやすいコードを記述することを信条としています。<br>複雑なUI実装においても、内部ロジックを整理し、属人性を排除した再現性の高いコンポーネント設計を目指しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <img src="images/icon_y_2.png" alt="Logo" class="footer__logo-img">
+                    <span class="footer__logo-text">Portfolio</span>
+                </div>
+                <p class="footer__copyright">Copyright &copy; 2026 Yumiko All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+    JavaScripts
+     -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Slickのライブラリ -->
+    <script src="js/slick.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
