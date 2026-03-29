@@ -1,15 +1,15 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixin' as *;
+@use '../abstracts/variables' as var;
+@use '../abstracts/mixin' as mix;
 
 .footer {
-  background-color: $color-main; // アイコンの色で全体を引き締める
-  color: $color-white;
+  background-color: var.$color-main; // アイコンの色で全体を引き締める
+  color: var.$color-white;
   padding: 40px 0;
   text-align: center;
 
   // ロゴ全体を横並びにして中央に配置
   &__logo {
-    @include flex-center;
+    @include mix.flex-center;
     margin-bottom: 10px;
   }
 
@@ -23,9 +23,9 @@
 
   // ロゴ文字の調整
   &__logo-text {
-    font-family: $font-en;
+    font-family: var.$font-en;
     font-size: 1.5rem;
-    color: $color-white;
+    color: var.$color-white;
   }
 
   &__copyright {

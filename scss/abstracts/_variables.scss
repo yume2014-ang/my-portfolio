@@ -1,3 +1,6 @@
+$breakpoint-sp: 768px; // スマホ用
+$breakpoint-xs: 480px; // さらに小さい画面用
+
 // Color
 $color-main: #4d2d18;   // アイコンのブラウン
 $color-accent: #d4a373; // 落ち着いたゴールド系
@@ -14,6 +17,8 @@ $space-scroll: 30px;    // スクロール位置のオフセット
 
 $header-height: 70px;       // ヘッダーの高さ
 $header-border-width: 2px;  // ボーダーの太さ
+
+$radius-main: 10px; // サイト共通の角丸値
 
 // z-indexの管理
 $z-index-default: 1;

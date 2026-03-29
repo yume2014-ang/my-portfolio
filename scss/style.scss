@@ -1,26 +1,26 @@
-@use 'abstracts/mixin' as *;
-@use 'abstracts/variables' as *;
+@use 'abstracts/variables' as var;
+@use 'abstracts/mixin' as mix;
 @use 'layout/header';
 @use 'layout/footer';
 
 //  基本スタイル
 body {
   margin: 0;
-  padding-top: $header-height;  // ヘッダーの高さ
-  font-family: $font-ja;  // 全体は日本語フォント
-  background-color: $color-base;
-  color: $color-text;
+  padding-top: var.$header-height;  // ヘッダーの高さ
+  font-family: var.$font-ja;  // 全体は日本語フォント
+  background-color: var.$color-base;
+  color: var.$color-text;
   line-height: 1.6;
 }
 
 h1, h2, h3 {
-  font-family: $font-en;  // 英語フォント
+  font-family: var.$font-en;  // 英語フォント
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 $space-unit;
+  padding: 0 var.$space-unit;
 }
 
 //  セクション
@@ -28,7 +28,7 @@ h1, h2, h3 {
   padding: 60px 0;
 
   // スクロール位置のオフセット
-  scroll-margin-top: $space-scroll;
+  scroll-margin-top: var.$space-scroll;
 
   &__title { // .section__title
     text-align: center;
@@ -42,7 +42,7 @@ h1, h2, h3 {
       display: block;
       width: 50px;
       height: 3px;
-      background: $color-main;
+      background: var.$color-main;
       margin: 10px auto 0;
     }
   }
@@ -76,7 +76,7 @@ h1, h2, h3 {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px; // 角を丸くする
+      border-radius: var.$radius-main;
     }
   }
 
@@ -95,12 +95,12 @@ h1, h2, h3 {
 
   // 矢印のカスタマイズ
   .slick-prev, .slick-next {
-    z-index: $z-index-slider-arrow; // スライドより上に表示
+    z-index: var.$z-index-slider-arrow; // スライドより上に表示
     width: 40px;      // クリックエリアを確保
     height: 40px;
 
     &::before {
-      color: $color-main; // 矢印の色
+      color: var.$color-main; // 矢印の色
       font-size: 20px;    // 矢の大きさ
       opacity: 1;         // 透過解除
     }
@@ -108,14 +108,14 @@ h1, h2, h3 {
 
   .slick-prev {
     left: 15%;
-    @media (max-width: 768px) {
+    @include mix.mq-sp {
       left: 2%;
     }
   }
 
   .slick-next {
     right: 15%;
-    @media (max-width: 768px) {
+    @include mix.mq-sp {
       right: 2%;
     }
   }
@@ -126,7 +126,7 @@ h1, h2, h3 {
 
   // タブメニュー
   &__tabs {
-    @include flex-center;
+    @include mix.flex-center;
     list-style: none;
     padding: 0;
     margin-bottom: 30px;
@@ -135,14 +135,15 @@ h1, h2, h3 {
   &__tab {
     cursor: pointer;
     padding: 10px 25px;
-    border: 1px solid $color-main;
-    color: $color-main; // 文字色
+    border: 1px solid var.$color-main;
+    border-radius: var.$radius-main;
+    color: var.$color-main; // 文字色
     margin: 0 5px;
     transition: all 0.3s;
 
     &.is-active {
-      background: $color-main;
-      color: $color-white;
+      background: var.$color-main;
+      color: var.$color-white;
     }
 
     &:hover {
@@ -159,8 +160,8 @@ h1, h2, h3 {
   }
 
   &__item {
-    background: $color-white;
-    border-radius: 8px;   // 角を丸く
+    background: var.$color-white;
+    border-radius: var.$radius-main;
     overflow: hidden;    // 子要素がはみ出さないように
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // 軽い影で立体感を出す
     transition: transform 0.3s ease, box-shadow 0.3s ease; // 変化を滑らかに
@@ -168,12 +169,12 @@ h1, h2, h3 {
     // カラム計算：PCでは3段（100% / 3 - 余白分）
     width: calc(33.333% - (20px * 2 / 3));
 
-    // スマホ対応（メディアクエリ：画面幅が768px以下の時）
-    @media (max-width: 768px) {
-      width: calc(50% - (20px / 2)); // スマホでは2段
+    // スマホ対応
+    @include mix.mq-sp {
+      width: calc(50% - (20px / 2));  // スマホでは2段
     }
-    @media (max-width: 480px) {
-      width: 100%; // もっと小さい画面では1段
+    @include mix.mq-xs {
+      width: 100%;  // さらに小さい画面では1段
     }
 
     // aタグ自体の装飾をリセット
@@ -212,13 +213,13 @@ h1, h2, h3 {
     margin: 0;
     font-size: 1.1rem;
     text-align: center;
-    color: $color-text;
+    color: var.$color-text;
   }
 }
 
 //  Contact
 .contact {
-  background-color: $color-white;
+  background-color: var.$color-white;
 
   &__message {
     text-align: center;
@@ -238,7 +239,7 @@ h1, h2, h3 {
     display: block;
     font-weight: bold;
     margin-bottom: 8px;
-    color: $color-main;
+    color: var.$color-main;
   }
 
   &__input,
@@ -253,8 +254,8 @@ h1, h2, h3 {
 
     &:focus {
       outline: none;
-      border-color: $color-accent; // 入力中（フォーカス時）の色
-      box-shadow: 0 0 5px rgba($color-accent, 0.3);
+      border-color: var.$color-accent; // 入力中（フォーカス時）の色
+      box-shadow: 0 0 5px rgba(var.$color-accent, 0.3);
     }
   }
 
@@ -269,8 +270,8 @@ h1, h2, h3 {
   }
 
   &__btn {
-    background-color: $color-main;
-    color: $color-white;
+    background-color: var.$color-main;
+    color: var.$color-white;
     padding: 15px 50px;
     border: none;
     border-radius: 30px; // 丸いボタン
@@ -279,7 +280,7 @@ h1, h2, h3 {
     transition: background-color 0.3s, transform 0.2s;
 
     &:hover {
-      background-color: $color-accent;
+      background-color: var.$color-accent;
       transform: translateY(-2px);
     }
   }
@@ -290,7 +291,7 @@ h1, h2, h3 {
     padding: 40px 0;
 
     h3 {
-      color: $color-main;
+      color: var.$color-main;
       margin-bottom: 15px;
     }
 

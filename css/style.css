@@ -270,6 +270,7 @@ h1, h2, h3 {
   cursor: pointer;
   padding: 10px 25px;
   border: 1px solid #4d2d18;
+  border-radius: 10px;
   color: #4d2d18;
   margin: 0 5px;
   transition: all 0.3s;
@@ -289,7 +290,7 @@ h1, h2, h3 {
 }
 .gallery__item {
   background: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;

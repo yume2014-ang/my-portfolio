@@ -1,17 +1,19 @@
-@use '../abstracts/variables' as *;
+@use '../abstracts/variables' as var;
+@use '../abstracts/mixin' as mix;
+
 
 .header {
-  background-color: $color-white;
+  background-color: var.$color-white;
 
   // ヘッダーを固定
   position: fixed;      // 画面に対して位置を固定
   top: 0;               // 一番上に配置
   left: 0;
   width: 100%;          // 横幅いっぱい
-  height: $header-height;
-  border-bottom: $header-border-width solid $color-main;  // 下線
+  height: var.$header-height;
+  border-bottom: var.$header-border-width solid var.$color-main;  // 下線
   box-sizing: border-box;
-  z-index: $z-index-header; // 他の要素より手前で描画
+  z-index: var.$z-index-header; // 他の要素より手前で描画
 
   // ロゴとナビを横並び
   .container {
@@ -28,12 +30,12 @@
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: $color-main;
+      color: var.$color-main;
     }
   }
   // ロゴ文字の調整
   &__logo-text {
-    font-family: $font-en;
+    font-family: var.$font-en;
     font-size: 1.2rem;
   }
 
@@ -49,7 +51,7 @@
   &__hamburger {
     display: none; // PCでは隠す
     
-    @media (max-width: 768px) {
+    @include mix.mq-sp {
       display: block;
       position: relative;
       width: 30px;
@@ -57,14 +59,14 @@
       background: none;
       border: none;
       cursor: pointer;
-      z-index: $z-index-hamburger; // ナビより上に
+      z-index: var.$z-index-hamburger; // ナビより上に
 
       span {
         display: block;
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: $color-main;
+        background-color: var.$color-main;
         transition: all 0.3s;
 
         &:nth-child(1) { top: 0; }
@@ -83,15 +85,15 @@
 
   // ナビゲーションの制御
   &__nav {
-    @media (max-width: 768px) {
+    @include mix.mq-sp {
       position: fixed;
       top: 0;
       right: -100%; // 最初は画面の外に隠す
       width: 100%;
       height: 100vh;
-      background-color: rgba($color-white, 0.95);
+      background-color: rgba(var.$color-white, 0.95);
       transition: all 0.4s;
-      z-index: $z-index-nav-mobile;
+      z-index: var.$z-index-nav-mobile;
 
       // メニューが開いた時
       &.is-active {
@@ -111,7 +113,7 @@
       margin-left: 25px; // メニュー間の余白
     }
 
-    @media (max-width: 768px) {
+    @include mix.mq-sp {
       flex-direction: column; // 縦並びに
       justify-content: center;
       align-items: center;
@@ -126,16 +128,16 @@
 
   &__link {
     text-decoration: none;
-    color: $color-text;
+    color: var.$color-text;
     font-weight: bold;
     font-size: 0.9rem;
     transition: color 0.3s;
 
     &:hover {
-      color: $color-accent;
+      color: var.$color-accent;
     }
 
-    @media (max-width: 768px) {
+    @include mix.mq-sp {
       font-size: 1.5rem; // スマホでは文字を大きくして押しやすく
     }
   }

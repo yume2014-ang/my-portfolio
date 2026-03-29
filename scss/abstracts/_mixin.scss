@@ -1,5 +1,21 @@
+@use 'variables' as var;
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+// スマホ用メディアクエリ
+@mixin mq-sp {
+  @media (max-width: var.$breakpoint-sp) {
+    @content;
+  }
+}
+
+// さらに小さい画面用
+@mixin mq-xs {
+  @media (max-width: var.$breakpoint-xs) {
+    @content;
+  }
 }
