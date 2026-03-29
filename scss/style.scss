@@ -144,10 +144,15 @@ h1, h2, h3 {
     &.is-active {
       background: var.$color-main;
       color: var.$color-white;
+      cursor: default;  // カーソルを矢印に戻す
     }
 
-    &:hover {
-      opacity: 0.7;
+    // アクティブでない時だけホバーを適用
+    &:not(.is-active) {
+      @include mix.hover {
+        // 背景色をメインカラーの薄いバージョン（透過10%）にする
+        background-color: rgba(var.$color-main, 0.1);
+      }
     }
   }  
 
@@ -185,7 +190,7 @@ h1, h2, h3 {
     }
 
     // ホバーエフェクト（マウスを乗せた時の挙動）
-    &:hover {
+    @include mix.hover {
       transform: translateY(-5px); // 少し浮き上がらせる
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
@@ -279,7 +284,7 @@ h1, h2, h3 {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 
-    &:hover {
+    @include mix.hover {
       background-color: var.$color-accent;
       transform: translateY(-2px);
     }

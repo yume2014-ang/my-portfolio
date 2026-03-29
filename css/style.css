@@ -118,8 +118,10 @@
   font-size: 0.9rem;
   transition: color 0.3s;
 }
-.header__link:hover {
-  color: #d4a373;
+@media (hover: hover) {
+  .header__link:hover {
+    color: #d4a373;
+  }
 }
 @media (max-width: 768px) {
   .header__link {
@@ -278,9 +280,12 @@ h1, h2, h3 {
 .gallery__tab.is-active {
   background: #4d2d18;
   color: #fff;
+  cursor: default;
 }
-.gallery__tab:hover {
-  opacity: 0.7;
+@media (hover: hover) {
+  .gallery__tab:not(.is-active):hover {
+    background-color: rgba(77, 45, 24, 0.1);
+  }
 }
 .gallery__list {
   display: flex;
@@ -311,9 +316,11 @@ h1, h2, h3 {
   color: inherit;
   display: block;
 }
-.gallery__item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+@media (hover: hover) {
+  .gallery__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
 }
 .gallery__image {
   width: 100%;
@@ -390,9 +397,11 @@ h1, h2, h3 {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
-.contact__btn:hover {
-  background-color: #d4a373;
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .contact__btn:hover {
+    background-color: #d4a373;
+    transform: translateY(-2px);
+  }
 }
 .contact__thanks {
   display: none;
